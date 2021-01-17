@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="UzTool.UC.ItemNews_UC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UzTool.UC"
+             mc:Ignorable="d" 
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="150" d:DesignWidth="400">
+    <Grid Height="150">
+        <materialDesign:Card Background="#03a9f4"
+            Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+            <StackPanel>
+                <TextBlock x:Name="newsTitle"
+                    Margin="16 16 16 4"
+                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                    Text="News Title">
+                </TextBlock>
+                <Separator Style="{StaticResource MaterialDesignLightSeparator}" />
+                <TextBlock x:Name="newsContent" Margin="16 0 16 8"
+                    VerticalAlignment="Center" HorizontalAlignment="Left"
+                    Style="{StaticResource MaterialDesignBody2TextBlock}"
+                           Text="Content of news!!" TextWrapping="WrapWithOverflow"/>
+                <StackPanel  Orientation="Horizontal"
+                        Margin="16 0 16 8" HorizontalAlignment="Right">
+                    <Button x:Name="btnCopy" Click="btnCopy_Click"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource MaterialDesignToolForegroundButton}"
+                        Width="30" Padding="2 0 2 0"
+                        materialDesign:RippleAssist.IsCentered="True">
+                        <materialDesign:PackIcon Kind="ContentCopy" />
+                    </Button>
+                    <Button x:Name="btnNavigate" Click="btnNavigate_Click"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource MaterialDesignToolForegroundButton}"
+                        Width="30" Padding="2 0 2 0"
+                        materialDesign:RippleAssist.IsCentered="True">
+                        <materialDesign:PackIcon Kind="Chromecast" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

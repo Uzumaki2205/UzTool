@@ -1,0 +1,141 @@
+﻿<Window x:Class="UzTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UzTool" 
+        xmlns:uc="clr-namespace:UzTool.UC"
+        mc:Ignorable="d"
+        
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MainWindow" Height="750" Width="800">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <uc:TopBar_UC MouseDown="TopBar_UC_MouseDown"/>
+                <DockPanel Margin="20" Width="70" HorizontalAlignment="Right">
+                    <Button Width="20" Height="20" Background="Red" BorderBrush="Red"
+                            Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                            DockPanel.Dock="Right" Click="TopBar_Btn_Click"
+                            ToolTip="Close" Tag="close">
+                    </Button>
+                    <Button Width="20" Height="20" Click="TopBar_Btn_Click"
+                            DockPanel.Dock="Right" Margin="0 0 3 0"
+                        Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                        ToolTip="Maximize" Tag="maximize">
+                    </Button>
+                    <Button Width="20" Height="20" Click="TopBar_Btn_Click"
+                            DockPanel.Dock="Right" Background="Yellow" BorderBrush="Yellow"
+                        Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                        ToolTip="Minimize" Tag="minimize">
+                    </Button>
+
+                </DockPanel>
+            </Grid>
+            <Grid Grid.Row="1" x:Name="gridContent">
+                <!--<uc:ShortenerLink_UC />-->
+                
+            </Grid>
+        </Grid>
+
+        <materialDesign:DrawerHost Width="800" 
+            HorizontalAlignment="Left"
+            BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <materialDesign:DrawerHost.Style>
+                <Style TargetType="materialDesign:DrawerHost"
+                    BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
+                    <Style.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsChecked, ElementName=BackgroundToggle}" Value="True">
+                            <Setter Property="OverlayBackground"
+                                Value="{DynamicResource PrimaryHueMidBrush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </materialDesign:DrawerHost.Style>
+            
+            <!--SIDE BAR-->
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel Width="250">
+                    <StackPanel DockPanel.Dock="Top">
+                        <TextBlock Margin="20" Text="MENU" HorizontalAlignment="Center"/>
+                        <Button x:Name="btnShortLink" Click="btnShortLink_Click" 
+                                Height="60" Width="250"
+                                Style="{DynamicResource MaterialDesignFlatButton}">
+                            <Grid Width="250">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Kind="ShieldLinkVariant"
+                                    Width="30" Height="30"/>
+                                <TextBlock Grid.Column="1"
+                                    Text="Rút gọn Link" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+                        <Button x:Name="btnNews" Click="btnNews_Click" 
+                                Height="60" Width="250"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                            <Grid Width="250">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Kind="NewspaperVariantOutline"
+                                    Width="30" Height="30" />
+                                <TextBlock Grid.Column="1"
+                                        Text="Đọc báo online" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+                        <Button x:Name="btnTest"  
+                                Height="60" Width="250"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                            <Grid Width="250">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Kind="NewspaperVariantOutline"
+                                    Width="30" Height="30" />
+                                <TextBlock Grid.Column="1"
+                                        Text="Đọc báo online" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+                    <Button DockPanel.Dock="Bottom"
+                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignIconButton}"
+                        Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+                        <materialDesign:PackIcon Kind="CloseCircle" Width="30" Height="30" />
+                    </Button>
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+
+            <Grid>
+                <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <ToggleButton Foreground="White" Width="40" Height="40"
+                        Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}"
+                        Margin="20 15 10 0">
+                    </ToggleButton>
+                </Grid>
+            </Grid>
+            <!--End SideBar-->
+        </materialDesign:DrawerHost>
+    </Grid>
+</Window>
